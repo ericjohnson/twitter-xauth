@@ -1,0 +1,14 @@
+twitter-xauth
+-------------
+
+This is an extremely simple twitter client for Mac OS X and iOS, which
+uses xauth for authentication. The only other feature provided are
+status updates. I created this project because I wanted something
+small and simple, and need only to be able to do status updates on
+twitter. I'm posting it in hopes that it might be of use to someone
+else.
+
+See twitter-xauth.m for example usage. Fill in values for
+CONSUMER_KEY, CONSUMER_SECRET, TWITTER_USERNAME, and
+TWITTER_PASSWORD. Compiles on Mac OS X using gnu make.
+
