@@ -241,7 +241,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"error %@", [error localizedDescription]);
+  NSLog(@"error %@", [error localizedDescription]);
   if (state == TwitterXAuthStateAuthorize && delegate && [delegate respondsToSelector:@selector(twitterXAuthAuthorizationDidFail:)])
     [delegate twitterXAuthAuthorizationDidFail:self];
   if (state == TwitterXAuthStateTweet && delegate && [delegate respondsToSelector:@selector(twitterXAuthTweetDidFail:)])
