@@ -12,8 +12,46 @@ See twitter-xauth.m for example usage. Fill in values for
 CONSUMER_KEY, CONSUMER_SECRET, TWITTER_USERNAME, and
 TWITTER_PASSWORD. Compiles on Mac OS X using gnu make.
 
-This code is possible thanks to documentation and code examples found
-on the following websites:
+
+Usage
+-----
+
+# Initialize TwitterXAuth
+
+```objective-c
+TwitterXAuth *twitter = [[TwitterXAuth alloc] initWithConsumerKey:@"your key" secret:@"your secret" andDelegate:self];
+```
+Make sure you implement the delegate methods you need:
+
+```objective-c
+# pragma mark - TwitterXAuth
+
+- (void) twitterXAuthAuthorizationDidFail:(TwitterXAuth *)twitterXAuth
+{
+    NSLog(@"auth failed");
+}
+
+- (void) twitterXAuthDidAuthorize:(TwitterXAuth *)twitterXAuth
+{
+    NSLog(@"auth succeeded");
+}
+
+- (void) twitterXAuthTweetDidFail:(TwitterXAuth *)twitterXAuth
+{
+}
+
+- (void) twitterXAuthDidTweet:(TwitterXAuth *)twitterXAuth
+{
+    
+}
+```
+# Authenticate user
+
+```objective-c
+[twitter authorizeWithUsername:loginObject.userName andPassword:loginObject.password];
+```
+
+See more documentation about XAuth using the links below:
 
 http://weblog.bluedonkey.org/?p=959
 http://cocoawithlove.com/2009/06/base64-encoding-options-on-mac-and.html
