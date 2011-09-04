@@ -13,6 +13,20 @@ CONSUMER_KEY, CONSUMER_SECRET, TWITTER_USERNAME, and
 TWITTER_PASSWORD. Compiles on Mac OS X using gnu make.
 
 
+Installation
+===========
+
+You'll need to copy the following files into your project:
+* TwitterXAuth.h
+* TwitterXAuth.m
+* NSData+Base64.h (assuming you're not already using this)
+* NSData+Base64.m (assuming you're not already using this)
+
+Then make sure you import in whatever controllers you need:
+
+```objective-c
+#import "TwitterXAuth.h"
+```
 Usage
 =====
 
