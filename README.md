@@ -16,8 +16,14 @@ TWITTER_PASSWORD. Compiles on Mac OS X using gnu make.
 Requisites
 ==========
 
-Your Twitter app must have XAuth enabled.  To do so, follow the instructions on this page:
+Your Twitter app must have XAuth enabled.  To do so, follow the 
+instructions on this page:
 https://dev.twitter.com/docs/oauth/xauth
+
+Don't be intimidated.  As long as you provide all the necessary info 
+to Twitter they will likely grant you access.  XAuth will save you a 
+lot of time compared to implementing MGTwitterEngine and represents a 
+good solution for integrating iOS with Twitter until iOS 5.0 arrives. 
 
 Installation
 ===========
