@@ -1,5 +1,5 @@
 twitter-xauth
--------------
+============
 
 This is an extremely simple twitter client for Mac OS X and iOS, which
 uses xauth for authentication. The only other feature provided are
@@ -14,7 +14,7 @@ TWITTER_PASSWORD. Compiles on Mac OS X using gnu make.
 
 
 Usage
------
+=====
 
 # Initialize TwitterXAuth
 
@@ -35,20 +35,30 @@ Make sure you implement the delegate methods you need:
 {
     NSLog(@"auth succeeded");
 }
-
-- (void) twitterXAuthTweetDidFail:(TwitterXAuth *)twitterXAuth
-{
-}
-
-- (void) twitterXAuthDidTweet:(TwitterXAuth *)twitterXAuth
-{
-    
-}
 ```
 # Authenticate user
 
 ```objective-c
 [twitter authorizeWithUsername:loginObject.userName andPassword:loginObject.password];
+```
+
+# Tweet on the user's behalf
+
+```objective-c
+[twitter tweet:@"Hi from Twitter-XAuth"];
+```
+Make sure you implement the tweet delegate methods if you need:
+
+```objective-c
+- (void) twitterXAuthTweetDidFail:(TwitterXAuth *)twitterXAuth
+{
+    NSLog(@"tweet failed";
+}
+
+- (void) twitterXAuthDidTweet:(TwitterXAuth *)twitterXAuth
+{
+    NSLog(@"tweet succeeded");
+}
 ```
 
 See more documentation about XAuth using the links below:
