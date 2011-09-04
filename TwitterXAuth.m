@@ -300,6 +300,10 @@
     if (delegate && [delegate respondsToSelector:@selector(twitterXAuthDidTweet:)])
       [delegate twitterXAuthDidTweet:self];
   }
+  if(self.token && ![self.tokenSecret isEqualToString:@""]){
+    if([self.delegate respondsToSelector:@selector(twitterXAuthDidGetToken:andTokenSecret:)])
+      [self.delegate twitterXAuthDidGetToken:self.token andTokenSecret:self.tokenSecret];
+  }
 }
 
 @end

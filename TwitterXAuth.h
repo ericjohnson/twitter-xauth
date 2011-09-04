@@ -23,6 +23,12 @@
 - (void) twitterXAuthDidAuthorize:(TwitterXAuth *)twitterXAuth;
 - (void) twitterXAuthTweetDidFail:(TwitterXAuth *)twitterXAuth;
 - (void) twitterXAuthDidTweet:(TwitterXAuth *)twitterXAuth;
+
+/*
+ * Implement this method if you want to get the token and secret immediately
+ * after authorization
+ */
+- (void) twitterXAuthDidGetToken:(NSString *)token andTokenSecret:(NSString *)secret;
 @end
 
 typedef enum {
