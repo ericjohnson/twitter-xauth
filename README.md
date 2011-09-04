@@ -13,6 +13,12 @@ CONSUMER_KEY, CONSUMER_SECRET, TWITTER_USERNAME, and
 TWITTER_PASSWORD. Compiles on Mac OS X using gnu make.
 
 
+Requisites
+==========
+
+Your Twitter app must have XAuth enabled.  To do so, follow the instructions on this page:
+https://dev.twitter.com/docs/oauth/xauth
+
 Installation
 ===========
 
