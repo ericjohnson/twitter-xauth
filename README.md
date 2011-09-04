@@ -63,13 +63,13 @@ Make sure you implement the tweet delegate methods if you need:
 
 See more documentation about XAuth using the links below:
 
-http://weblog.bluedonkey.org/?p=959
-http://cocoawithlove.com/2009/06/base64-encoding-options-on-mac-and.html
-http://www.getsharekit.com/
-http://www.gigliwood.com/weblog/Cocoa/Q__When_is_an_conne.html
-http://dev.twitter.com/pages/xauth
-http://dev.twitter.com/doc/post/oauth/access_token
-http://dev.twitter.com/pages/auth#auth-request
+* http://weblog.bluedonkey.org/?p=959
+* http://cocoawithlove.com/2009/06/base64-encoding-options-on-mac-and.html
+* http://www.getsharekit.com/
+* http://www.gigliwood.com/weblog/Cocoa/Q__When_is_an_conne.html
+* http://dev.twitter.com/pages/xauth
+* http://dev.twitter.com/doc/post/oauth/access_token
+* http://dev.twitter.com/pages/auth#auth-request
 
 Special thanks to Matt Gallagher of cocoawithlove.com for providing an
 Objective-C implementation of Base64 encoding for Mac and iPhone.
