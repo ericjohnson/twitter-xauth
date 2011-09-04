@@ -301,8 +301,8 @@
       [delegate twitterXAuthDidTweet:self];
   }
   if(self.token && ![self.tokenSecret isEqualToString:@""]){
-    if([self.delegate respondsToSelector:@selector(twitterXAuthDidGetToken:andTokenSecret:)])
-      [self.delegate twitterXAuthDidGetToken:self.token andTokenSecret:self.tokenSecret];
+    if([self.delegate respondsToSelector:@selector(twitterXAuthDidRetrieveToken:andTokenSecret:)])
+      [self.delegate twitterXAuthDidRetrieveToken:self.token andTokenSecret:self.tokenSecret];
   }
 }
 

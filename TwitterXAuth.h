@@ -28,7 +28,7 @@
  * Implement this method if you want to get the token and secret immediately
  * after authorization
  */
-- (void) twitterXAuthDidGetToken:(NSString *)token andTokenSecret:(NSString *)secret;
+- (void) twitterXAuthDidRetrieveToken:(NSString *)token andTokenSecret:(NSString *)secret;
 @end
 
 typedef enum {

@@ -75,12 +75,18 @@ Make sure you implement the tweet delegate methods if you need:
 }
 ```
 # Single Sign On
-Should you need to log a user in to your backend with Twitter, you'll need to grab the user's token and tokenSecret from the TwitterXAuth object:
+Should you need to log a user in to your backend with Twitter, you'll need to grab the user's token and tokenSecret from the TwitterXAuth object.  The easiest way to do this is to implement the twitterXAuthDidRetrieveToken:andSecret method:
 
 ```objective-c
-  NSLog(@"twitter token: '%@'", twitter.token);
-  NSLog(@"twitter token secret: '%@'", twitter.tokenSecret);
+- (void) twitterXAuthDidRetrieveToken:(NSString *)token andTokenSecret:(NSString *)secret
+{
+  // Do something useful with the token and secret
+}
 ```
+It's important to note that you probably want to choose to implement either twitterXAuthDidAuthorize OR twitterXAuthDidRetrieveToken:andSecret because they both will be called upon authorization if they are implemented.
+
+More
+====
 
 See more documentation about XAuth using the links below:
 
