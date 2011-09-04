@@ -52,16 +52,15 @@
 
 - (id) init
 {
-  if ((self = [super init])) {
-    state = TwitterXAuthStateDefault;
-    data = [[NSMutableData alloc] init];
-  }
-  return self;
+  [NSException raise:@"Initialization Error" format:@"you must initialize with initWithConsumerKey:secret:andDelegate:"];
+  return nil;
 }
 
 - (id) initWithConsumerKey:(NSString *)key secret:(NSString *)secret andDelegate:(id<TwitterXAuthDelegate>)del
 {
-  self = [self init];
+  self = [super init];
+  state = TwitterXAuthStateDefault;
+  data = [[NSMutableData alloc] init];
   self.consumerKey = key;
   self.consumerSecret = secret;
   self.delegate = del;
