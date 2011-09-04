@@ -42,7 +42,7 @@ Then make sure you import in whatever controllers you need:
 Usage
 =====
 
-# Initialize TwitterXAuth
+####Initialize TwitterXAuth
 
 ```objective-c
 TwitterXAuth *twitter = [[TwitterXAuth alloc] initWithConsumerKey:@"your key" secret:@"your secret" andDelegate:self];
@@ -62,13 +62,13 @@ Make sure you implement the delegate methods you need:
     NSLog(@"auth succeeded");
 }
 ```
-# Authenticate user
+#### Authenticate user
 
 ```objective-c
 [twitter authorizeWithUsername:loginObject.userName andPassword:loginObject.password];
 ```
 
-# Tweet on the user's behalf
+#### Tweet on the user's behalf
 
 ```objective-c
 [twitter tweet:@"Hi from Twitter-XAuth"];
@@ -86,7 +86,7 @@ Make sure you implement the tweet delegate methods if you need:
     NSLog(@"tweet succeeded");
 }
 ```
-# Single Sign On
+#### Single Sign On
 Should you need to log a user in to your backend with Twitter, you'll need to grab the user's token and tokenSecret from the TwitterXAuth object.  The easiest way to do this is to implement the twitterXAuthDidRetrieveToken:andSecret method:
 
 ```objective-c
