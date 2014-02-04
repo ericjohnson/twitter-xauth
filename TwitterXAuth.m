@@ -120,8 +120,8 @@
 			      nil];
   if (state == TwitterXAuthStateAuthorize)
     params = [params arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:[NSString stringWithFormat:@"%@%%3D%@", @"x_auth_mode", x_auth_mode],
-							    [NSString stringWithFormat:@"%@%%3D%@", @"x_auth_password", x_auth_password],
-							    [NSString stringWithFormat:@"%@%%3D%@", @"x_auth_username", x_auth_username],
+							    [NSString stringWithFormat:@"%@%%3D%@", @"x_auth_password", [x_auth_password urlEncode]],
+							    [NSString stringWithFormat:@"%@%%3D%@", @"x_auth_username", [x_auth_username urlEncode]],
 							    nil]];
   if (state == TwitterXAuthStateTweet)
     params = [params arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:[NSString stringWithFormat:@"%@%%3D%@", @"oauth_token", [self.token urlEncode]],
