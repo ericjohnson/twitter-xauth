@@ -23,6 +23,12 @@
 - (void) twitterXAuthDidAuthorize:(TwitterXAuth *)twitterXAuth;
 - (void) twitterXAuthTweetDidFail:(TwitterXAuth *)twitterXAuth;
 - (void) twitterXAuthDidTweet:(TwitterXAuth *)twitterXAuth;
+
+/*
+ * Implement this method if you want to get the token and secret immediately
+ * after authorization
+ */
+- (void) twitterXAuthDidRetrieveToken:(NSString *)token andTokenSecret:(NSString *)secret;
 @end
 
 typedef enum {
@@ -54,6 +60,23 @@ typedef enum {
 @property (nonatomic,copy) NSString * token; //oauth_token
 @property (nonatomic,copy) NSString * tokenSecret; //oauth_token_secret
 @property (nonatomic,assign) id<TwitterXAuthDelegate> delegate;
-- (void) authorize;
+
+/*
+ * Use this to create your TwitterXAuth object.  Then call authorizeWithUsername:andPassword:
+ * when the user has entered his/her credentials
+ */
+- (id) initWithConsumerKey:(NSString *)key secret:(NSString *)secret andDelegate:(id<TwitterXAuthDelegate>)del;
+
+/*
+ * Send an authentication request to Twitter
+ * @param username the user's twitter handle
+ * @param password the user's twitter password
+ */
+- (void) authorizeWithUsername:(NSString *)username andPassword:(NSString *)password;
+
+/*
+ * Send a status update to twitter on behalf of authenticated user
+ * @param status the tweet text
+ */
 - (void) tweet:(NSString *)status;
 @end

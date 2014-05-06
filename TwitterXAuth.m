@@ -52,11 +52,18 @@
 
 - (id) init
 {
-  if ((self = [super init])) {
-    state = TwitterXAuthStateDefault;
-    data = [[NSMutableData alloc] init];
-    self.tokenSecret = @"";
-  }
+  [NSException raise:@"Initialization Error" format:@"you must initialize with initWithConsumerKey:secret:andDelegate:"];
+  return nil;
+}
+
+- (id) initWithConsumerKey:(NSString *)key secret:(NSString *)secret andDelegate:(id<TwitterXAuthDelegate>)del
+{
+  self = [super init];
+  state = TwitterXAuthStateDefault;
+  data = [[NSMutableData alloc] init];
+  self.consumerKey = key;
+  self.consumerSecret = secret;
+  self.delegate = del;
   return self;
 }
 
@@ -144,7 +151,8 @@
 
 - (NSString *) signature
 {
-  NSString * secret = [NSString stringWithFormat:@"%@&%@", self.consumerSecret, self.tokenSecret];
+  if(!self.tokenSecret) self.tokenSecret = @"";
+  NSString *secret = [NSString stringWithFormat:@"%@&%@", self.consumerSecret, self.tokenSecret];
 
   NSData * secretData = [secret dataUsingEncoding:NSUTF8StringEncoding];
   NSData * baseData = [self.baseString dataUsingEncoding:NSUTF8StringEncoding];
@@ -173,8 +181,10 @@
   return [NSString stringWithFormat:@"OAuth %@", [keysAndValues componentsJoinedByString:@", "]];
 }
 
-- (void) authorize
+- (void) authorizeWithUsername:(NSString *)_username andPassword:(NSString *)_password
 {
+  self.username = _username;
+  self.password = _password;
   //send POST to https://api.twitter.com/oauth/access_token with parameters: x_auth_username, x_auth_password, x_auth_mode
 
   [self resetTimestamp];
@@ -231,6 +241,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+  NSLog(@"error %@", [error localizedDescription]);
   if (state == TwitterXAuthStateAuthorize && delegate && [delegate respondsToSelector:@selector(twitterXAuthAuthorizationDidFail:)])
     [delegate twitterXAuthAuthorizationDidFail:self];
   if (state == TwitterXAuthStateTweet && delegate && [delegate respondsToSelector:@selector(twitterXAuthTweetDidFail:)])
@@ -267,6 +278,8 @@
     NSString * response = [[[NSString alloc] initWithData:data
 						 encoding:NSUTF8StringEncoding] autorelease];
     NSArray * parameters = [response componentsSeparatedByString:@"&"];
+    NSLog(@"response parameters %@", parameters);
+    
     NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
     for (NSString * parameter in parameters) {
       NSArray * keyAndValue = [parameter componentsSeparatedByString:@"="];
@@ -286,6 +299,10 @@
     NSLog(@"tweet");
     if (delegate && [delegate respondsToSelector:@selector(twitterXAuthDidTweet:)])
       [delegate twitterXAuthDidTweet:self];
+  }
+  if(self.token && ![self.tokenSecret isEqualToString:@""]){
+    if([self.delegate respondsToSelector:@selector(twitterXAuthDidRetrieveToken:andTokenSecret:)])
+      [self.delegate twitterXAuthDidRetrieveToken:self.token andTokenSecret:self.tokenSecret];
   }
 }
 
